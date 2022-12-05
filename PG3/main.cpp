@@ -21,7 +21,6 @@ void setTimeout(PFunc p, int second)
 	p(&second);
 }
 
-
 int main()
 {
 	srand(time(nullptr));
@@ -70,7 +69,6 @@ int main()
 	{
 		printf("1‚©0‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B\n");
 	}
-
 
 	return 0;
 }
