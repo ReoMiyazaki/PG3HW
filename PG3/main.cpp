@@ -36,8 +36,6 @@ int main()
 
 	if (anser == 1 || anser == 0)
 	{
-
-
 		// “ü—Í‚ªŠï”
 		if (anser == 1)
 		{
