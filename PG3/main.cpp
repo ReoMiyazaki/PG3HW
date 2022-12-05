@@ -3,14 +3,14 @@
 #include <time.h>
 #include "windows.h"
 
-typedef void(*PFunc)(int*);
+typedef void(*PFunc)();
 
 // コールバック関数
-void Around(int* s)
+void Around()
 {
 	printf("あなたの勝ちだ！");
 }
-void Missing(int* s)
+void Missing()
 {
 	printf("残念だが、私の勝ちだ。");
 }
@@ -18,7 +18,7 @@ void setTimeout(PFunc p, int second)
 {
 	// コールバック関数を呼び出す
 	Sleep(second * 1'000);
-	p(&second);
+	p();
 }
 
 int main()
