@@ -32,6 +32,8 @@ int main()
 	printf("サイコロの出目は、半か丁か！\n");
 	printf("半なら1, 丁なら0を入力してください → ");
 	scanf_s("%d", &anser);
+	// 3秒待つ
+	setTimeout(p, 3);
 
 	if (anser == 1 || anser == 0)
 	{
@@ -60,8 +62,6 @@ int main()
 				p = Missing;
 			}
 		}
-		// 3秒待つ
-		setTimeout(p, 3);
 		printf("出た目は[%d]だったぜ。\n", dice);
 	}
 
