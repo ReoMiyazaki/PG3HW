@@ -14,6 +14,7 @@ void Missing()
 {
 	printf("残念だが、私の勝ちだ。");
 }
+
 void setTimeout(PFunc p, int second)
 {
 	// コールバック関数を呼び出す
