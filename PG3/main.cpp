@@ -4,67 +4,67 @@
 #include <list>
 
 int main()
-{	// Rèü‚Ì‰w–¼‚ÌƒŠƒXƒg
+{	// å±±æ‰‹ç·šã®é§…åã®ãƒªã‚¹ãƒˆ
 	std::list<const char*>list
 	{
-		"Tokyo",		// “Œ‹
-		"Kanda",		// _“c
-		"Akihabara",	// H—tŒ´
-		"Okachimachi",	// Œä“k’¬
-		"Ueno",			// ã–ì
-		"Uguisudani",	// éò’J
-		"Nippori",		// “ú•é—¢ (‚±‚ÌŒã1971ŠJ‹Æ‚Ì¼“ú•é—¢<Nishi-Nippori>)
-		"Tabata",		// “c’[
-		"Komagome",		// ‹î
-		"Sugamo",		// ‘ƒŠ›
-		"Otsuka",		// ‘å’Ë
-		"Ikebukuro",	// ’r‘Ü
-		"Mejiro",		// –Ú”’
-		"Takadanobaba",	// ‚“c”nê
-		"Shin-Okubo",	// V‘å‹v•Û
-		"Shinjuku",		// Vh
-		"Yoyogi",		// ‘ãX–Ø
-		"Harajuku",		// Œ´h
-		"Shibuya",		// a’J
-		"Ebisu",		// Œb”äõ
-		"Meguro",		// –Ú•
-		"Gotanda",		// ŒÜ”½“c
-		"Osaki",		// ‘åè
-		"Shinagawa",	// •iì (‚±‚ÌŒã2020ŠJ‹Æ‚Ì‚—ÖƒQ[ƒgƒEƒFƒC<Takanawa-Gateway>)
-		"Tamachi",		// “c’¬
-		"Hamamatsucho",	// •l¼’¬
-		"Shimbashi",	// V‹´
-		"Yurakucho",	// —LŠy’¬
+		"Tokyo",		// æ±äº¬
+		"Kanda",		// ç¥ç”°
+		"Akihabara",	// ç§‹è‘‰åŸ
+		"Okachimachi",	// å¾¡å¾’ç”º
+		"Ueno",			// ä¸Šé‡
+		"Uguisudani",	// é¶¯è°·
+		"Nippori",		// æ—¥æš®é‡Œ (ã“ã®å¾Œ1971é–‹æ¥­ã®è¥¿æ—¥æš®é‡Œ<Nishi-Nippori>)
+		"Tabata",		// ç”°ç«¯
+		"Komagome",		// é§’è¾¼
+		"Sugamo",		// å·£é´¨
+		"Otsuka",		// å¤§å¡š
+		"Ikebukuro",	// æ± è¢‹
+		"Mejiro",		// ç›®ç™½
+		"Takadanobaba",	// é«˜ç”°é¦¬å ´
+		"Shin-Okubo",	// æ–°å¤§ä¹…ä¿
+		"Shinjuku",		// æ–°å®¿
+		"Yoyogi",		// ä»£ã€…æœ¨
+		"Harajuku",		// åŸå®¿
+		"Shibuya",		// æ¸‹è°·
+		"Ebisu",		// æµæ¯”å¯¿
+		"Meguro",		// ç›®é»’
+		"Gotanda",		// äº”åç”°
+		"Osaki",		// å¤§å´
+		"Shinagawa",	// å“å· (ã“ã®å¾Œ2020é–‹æ¥­ã®é«˜è¼ªã‚²ãƒ¼ãƒˆã‚¦ã‚§ã‚¤<Takanawa-Gateway>)
+		"Tamachi",		// ç”°ç”º
+		"Hamamatsucho",	// æµœæ¾ç”º
+		"Shimbashi",	// æ–°æ©‹
+		"Yurakucho",	// æœ‰æ¥½ç”º
 	};
 
-	printf("1970”N\n");
+	printf("1970å¹´\n");
 	for (std::list<const char*>::iterator i = list.begin(); i != list.end(); ++i)
 	{
 		printf("%s\n", *i);
 	}
 
-	printf("\n2019”N\n");
+	printf("\n2019å¹´\n");
 	for (std::list<const char*>::iterator i = list.begin(); i != list.end(); ++i)
 	{
-		//“c”¨‚Ü‚Å—ˆ‚½‚ç
+		//ç”°ç•‘ã¾ã§æ¥ãŸã‚‰
 		if (*i == "Tabata")
 		{
-			i = list.insert(i, "Nishi-Nippori");	//¼“ú•é—¢‚ğ‘}“ü‚µ‚Ä
-			printf("%s\n", *i);	//•\¦‚Ü‚Å‚µ‚½‚ç
-			++i;				//ƒCƒeƒŒ[ƒ^‚ğŸ‚Éi‚ß‚é(“c”¨‚ğ•\¦)
+			i = list.insert(i, "Nishi-Nippori");	//è¥¿æ—¥æš®é‡Œã‚’æŒ¿å…¥ã—ã¦
+			printf("%s\n", *i);	//è¡¨ç¤ºã¾ã§ã—ãŸã‚‰
+			++i;				//ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’æ¬¡ã«é€²ã‚ã‚‹(ç”°ç•‘ã‚’è¡¨ç¤º)
 		}
 		printf("%s\n", *i);
 	}
 
-	printf("\n2022”N\n");
+	printf("\n2022å¹´\n");
 	for (std::list<const char*>::iterator i = list.begin(); i != list.end(); ++i)
 	{
-		//“c’¬‚Ü‚Å—ˆ‚½‚ç
+		//ç”°ç”ºã¾ã§æ¥ãŸã‚‰
 		if (*i == "Tamachi")
 		{
-			i = list.insert(i, "Takanawa-Gateway");	//‚—ÖƒQ[ƒgƒEƒFƒC‚ğ‘}“ü‚µ‚Ä
-			printf("%s\n", *i);	//•\¦‚Ü‚Å‚µ‚½‚ç
-			++i;				//ƒCƒeƒŒ[ƒ^‚ğŸ‚Éi‚ß‚é(“c’¬‚ğ•\¦)
+			i = list.insert(i, "Takanawa-Gateway");	//é«˜è¼ªã‚²ãƒ¼ãƒˆã‚¦ã‚§ã‚¤ã‚’æŒ¿å…¥ã—ã¦
+			printf("%s\n", *i);	//è¡¨ç¤ºã¾ã§ã—ãŸã‚‰
+			++i;				//ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’æ¬¡ã«é€²ã‚ã‚‹(ç”°ç”ºã‚’è¡¨ç¤º)
 		}
 		printf("%s\n", *i);
 	}
