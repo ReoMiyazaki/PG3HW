@@ -1,446 +1,73 @@
-#include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
-
-typedef struct cell
-{
-	char name[8];
-	struct cell* prev;
-	struct cell* next;
-}CELL;
-
-//ƒf[ƒ^‚Ì‘}“ü
-void Insert(CELL* currentCell, const char* buf);
-void PushBack(CELL* currentCell, const char* buf);
-//—v‘fˆê——•\¦
-int Index(CELL* endCell);
-//ƒŠƒXƒg‚ÌÅŒã”ö‚ğíœ
-void Delete(CELL* deleteCell);
-//•ÒW
-void Edit(CELL* editCell);
-//”CˆÓ‚ÌˆÊ’u‚Ü‚ÅƒAƒhƒŒƒX‚ğ‚½‚Ç‚é
-CELL* GetInsertCellAddress(CELL* endCell, int iterator);
-
-int sceneNum = 0;
-int eleSceneNum = 0;
+#include <Windows.h>
+#include <vector>
+#include <list>
 
 int main()
-{
-	int iterator = 0;
-	char name[8];
-	CELL* insertCell;
-
-	int eleNum = 0;
-
-	CELL head;
-	head.prev = nullptr;	//‰Šú‰»“I‚È‚±‚Æ‚ğ‚µ‚Ä‚ ‚°‚È‚¢‚ÆƒSƒ~‚ª“ü‚Á‚¿‚á‚¤
-	head.next = nullptr;	//‰Šú‰»“I‚È‚±‚Æ‚ğ‚µ‚Ä‚ ‚°‚È‚¢‚ÆƒSƒ~‚ª“ü‚Á‚¿‚á‚¤
-
-	while (true)
+{	// å±±æ‰‹ç·šã®é§…åã®ãƒªã‚¹ãƒˆ
+	std::list<const char*>list
 	{
-		//‰Šú‰æ–Ê
-		if (sceneNum == 0)
+		"Tokyo",		// æ±äº¬
+		"Kanda",		// ç¥ç”°
+		"Akihabara",	// ç§‹è‘‰åŸ
+		"Okachimachi",	// å¾¡å¾’ç”º
+		"Ueno",			// ä¸Šé‡
+		"Uguisudani",	// é¶¯è°·
+		"Nippori",		// æ—¥æš®é‡Œ (ã“ã®å¾Œ1971é–‹æ¥­ã®è¥¿æ—¥æš®é‡Œ<Nishi-Nippori>)
+		"Tabata",		// ç”°ç«¯
+		"Komagome",		// é§’è¾¼
+		"Sugamo",		// å·£é´¨
+		"Otsuka",		// å¤§å¡š
+		"Ikebukuro",	// æ± è¢‹
+		"Mejiro",		// ç›®ç™½
+		"Takadanobaba",	// é«˜ç”°é¦¬å ´
+		"Shin-Okubo",	// æ–°å¤§ä¹…ä¿
+		"Shinjuku",		// æ–°å®¿
+		"Yoyogi",		// ä»£ã€…æœ¨
+		"Harajuku",		// åŸå®¿
+		"Shibuya",		// æ¸‹è°·
+		"Ebisu",		// æµæ¯”å¯¿
+		"Meguro",		// ç›®é»’
+		"Gotanda",		// äº”åç”°
+		"Osaki",		// å¤§å´
+		"Shinagawa",	// å“å· (ã“ã®å¾Œ2020é–‹æ¥­ã®é«˜è¼ªã‚²ãƒ¼ãƒˆã‚¦ã‚§ã‚¤<Takanawa-Gateway>)
+		"Tamachi",		// ç”°ç”º
+		"Hamamatsucho",	// æµœæ¾ç”º
+		"Shimbashi",	// æ–°æ©‹
+		"Yurakucho",	// æœ‰æ¥½ç”º
+	};
+
+	printf("1970å¹´\n");
+	for (std::list<const char*>::iterator i = list.begin(); i != list.end(); ++i)
+	{
+		printf("%s\n", *i);
+	}
+
+	printf("\n2019å¹´\n");
+	for (std::list<const char*>::iterator i = list.begin(); i != list.end(); ++i)
+	{
+		//ç”°ç•‘ã¾ã§æ¥ãŸã‚‰
+		if (*i == "Tabata")
 		{
-			printf("[ —v‘f‚Ì‘€ì ]\n");
-			printf("1.—v‘f‚Ìˆê——•\¦\n");
-			printf("2.ÅŒã”ö‚É—v‘f‚Ì‘}“ü\n");
-			printf("3.—v‘f‚Ì•ÒW\n");
-			printf("4.ÅŒã”ö‚Ì—v‘f‚Ìíœ\n");
-			printf("\n");
-			printf("---------------------\n");
-			printf("‘€ì‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢\n");
-
-			//ƒV[ƒ“Ø‚è‘Ö‚¦
-			while (true)
-			{
-				int num;
-				scanf_s("%d", &num);
-				scanf_s("%*[^\n]%*c");
-				printf("\n");
-
-				if (num >= 1 && num <= 4)
-				{
-					sceneNum = num;
-					break;
-				}
-				else
-				{
-					printf("³‚µ‚¢‘€ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-				}
-			}
+			i = list.insert(i, "Nishi-Nippori");	//è¥¿æ—¥æš®é‡Œã‚’æŒ¿å…¥ã—ã¦
+			printf("%s\n", *i);	//è¡¨ç¤ºã¾ã§ã—ãŸã‚‰
+			++i;				//ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’æ¬¡ã«é€²ã‚ã‚‹(ç”°ç•‘ã‚’è¡¨ç¤º)
 		}
+		printf("%s\n", *i);
+	}
 
-		//—v‘fˆê——
-		else if (sceneNum == 1)
+	printf("\n2022å¹´\n");
+	for (std::list<const char*>::iterator i = list.begin(); i != list.end(); ++i)
+	{
+		//ç”°ç”ºã¾ã§æ¥ãŸã‚‰
+		if (*i == "Tamachi")
 		{
-			printf("[ —v‘f‚Ì•\¦ ]\n");
-			printf("1.—v‘f‚Ìˆê——•\¦\n");
-			printf("2.‡”Ô‚ğw’è‚µ‚Ä—v‘f‚ğ•\¦\n");
-			printf("3.‰Šú‰æ–Ê‚É–ß‚é\n");
-			printf("\n");
-			printf("---------------------\n");
-			printf("‘€ì‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢\n");
-
-			//ƒV[ƒ“Ø‚è‘Ö‚¦
-			while (true)
-			{
-				int num;
-				scanf_s("%d", &num);
-				scanf_s("%*[^\n]%*c");
-				printf("\n");
-				if (num >= 1 && num <= 3)
-				{
-					eleSceneNum = num;
-					break;
-				}
-				else
-				{
-					printf("³‚µ‚¢‘€ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-				}
-			}
-
-			if (eleSceneNum == 1)
-			{
-				printf("[ —v‘f‚Ìˆê——•\¦ ]\n");
-				printf("—v‘fˆê——:\n");
-
-				eleNum = Index(&head);
-
-				if (head.next == nullptr)
-				{
-					printf("‘¶İ‚µ‚Ä‚¢‚Ü‚¹‚ñ\n");
-				}
-
-				printf("—v‘f”:%d\n", eleNum);
-				printf("\n");
-				printf("---------------------\n");
-				printf("1.[ —v‘f‚Ì•\¦ ]‚É–ß‚é\n");
-				printf("2.‰Šú‰æ–Ê‚É–ß‚é\n");
-
-				int num;
-				scanf_s("%d", &num);
-				scanf_s("%*[^\n]%*c");
-				printf("\n");
-
-				if (num == 1)
-				{
-					sceneNum = 1;
-				}
-				else if (num == 2)
-				{
-					sceneNum = 0;
-				}
-				else
-				{
-					printf("³‚µ‚¢‘€ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-				}
-			}
-			if (eleSceneNum == 2)
-			{
-				printf("[ ‡”Ô‚ğw’è‚µ‚Ä—v‘f‚ğ•\¦ ]\n");
-				printf("•\¦‚µ‚½‚¢—v‘f‚Ì‡”Ô‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢\n");
-
-				scanf_s("%d", &iterator);
-				scanf_s("%*[^\n]%*c");
-				printf("\n");
-
-				insertCell = GetInsertCellAddress(&head, iterator);
-				if (insertCell->next != nullptr)
-				{
-					printf("%d”Ô–Ú‚Ì—v‘f‚Í%s‚Å‚·\n", iterator, insertCell->name);
-				}
-				else
-				{
-					printf("‘¶İ‚µ‚Ä‚¢‚Ü‚¹‚ñ\n");
-				}
-
-				printf("---------------------\n");
-				printf("1.[ —v‘f‚Ì•\¦ ]‚É–ß‚é\n");
-				printf("2.‰Šú‰æ–Ê‚É–ß‚é\n");
-
-				int num;
-				scanf_s("%d", &num);
-				scanf_s("%*[^\n]%*c");
-				printf("\n");
-
-				if (num == 1)
-				{
-					sceneNum = 1;
-				}
-				else if (num == 2)
-				{
-					sceneNum = 0;
-				}
-				else
-				{
-					printf("³‚µ‚¢‘€ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-				}
-			}
-			if (eleSceneNum == 3)
-			{
-				sceneNum = 0;
-			}
-
-			//ƒV[ƒ“Ø‚è‘Ö‚¦
-			while (sceneNum != 1)
-			{
-				if (sceneNum == 0)
-				{
-					break;
-				}
-				else
-				{
-					printf("---------------------\n");
-					printf("0.‰Šú‰æ–Ê‚É–ß‚é\n");
-					int num;
-					scanf_s("%d", &num);
-					scanf_s("%*[^\n]%*c");
-					printf("\n");
-
-					if (num == 0)
-					{
-						sceneNum = num;
-						break;
-					}
-					else
-					{
-						printf("³‚µ‚¢‘€ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-					}
-				}
-			}
+			i = list.insert(i, "Takanawa-Gateway");	//é«˜è¼ªã‚²ãƒ¼ãƒˆã‚¦ã‚§ã‚¤ã‚’æŒ¿å…¥ã—ã¦
+			printf("%s\n", *i);	//è¡¨ç¤ºã¾ã§ã—ãŸã‚‰
+			++i;				//ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’æ¬¡ã«é€²ã‚ã‚‹(ç”°ç”ºã‚’è¡¨ç¤º)
 		}
-
-		//‘}“ü
-		else if (sceneNum == 2)
-		{
-			printf("[ ƒŠƒXƒg—v‘f‚Ì‘}“ü ]\n");
-			printf("’Ç‰Á‚·‚é—v‘f”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-
-			while (true)
-			{
-				scanf_s("%d", &iterator);
-				scanf_s("%*[^\n]%*c");
-				printf("\n");
-
-				insertCell = GetInsertCellAddress(&head, iterator);
-
-				break;
-			}
-
-			while (true)
-			{
-				printf("[ ƒŠƒXƒg—v‘f‚Ì‘}“ü ]\n");
-				printf("’Ç‰Á‚·‚é—v‘f‚Ì“à—e‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-
-				scanf_s("%s", name, 8);
-
-				Insert(insertCell, name);
-				printf("%s‚ª%d”Ô–Ú‚É’Ç‰Á‚³‚ê‚Ü‚µ‚½\n", insertCell->next->name, iterator);
-				break;
-			}
-
-			//ƒV[ƒ“Ø‚è‘Ö‚¦
-			printf("---------------------\n");
-			printf("0.‰Šú‰æ–Ê‚É–ß‚é\n");
-			while (true)
-			{
-				int num;
-				scanf_s("%d", &num);
-				scanf_s("%*[^\n]%*c");
-				printf("\n");
-
-				if (num == 0)
-				{
-					sceneNum = num;
-					break;
-				}
-				else
-				{
-					printf("³‚µ‚¢‘€ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-				}
-			}
-		}
-
-		//•ÒW
-		else if (sceneNum == 3)
-		{
-			printf("[ —v‘f‚Ì•ÒW ]\n");
-			printf("•ÒW‚µ‚½‚¢—v‘f‚Ì”Ô†‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢\n");
-
-			scanf_s("%d", &iterator);
-			scanf_s("%*[^\n]%*c");
-			printf("\n");
-
-			insertCell = GetInsertCellAddress(&head, iterator);
-			if (insertCell->next != nullptr)
-			{
-				Edit(insertCell);
-				printf("%d”Ô–Ú‚Ì—v‘f‚ª%s‚É•ÏX‚³‚ê‚Ü‚µ‚½\n", iterator, insertCell->next->name);
-			}
-			else
-			{
-				printf("%d”Ô–Ú‚Ì—v‘f‚Í‘¶İ‚µ‚Ä‚¢‚Ü‚¹‚ñ\n", iterator);
-				sceneNum = 0;
-			}
-
-			//ƒV[ƒ“Ø‚è‘Ö‚¦
-			while (true)
-			{
-				if (sceneNum == 0)
-				{
-					printf("•ÒW‚·‚é‚à‚Ì‚ª‘¶İ‚µ‚È‚¢‚½‚ß‰Šú‰æ–Ê‚É–ß‚è‚Ü‚·\n");
-					break;
-				}
-				else
-				{
-					printf("---------------------\n");
-					printf("0.‰Šú‰æ–Ê‚É–ß‚é\n");
-					int num;
-					scanf_s("%d", &num);
-					scanf_s("%*[^\n]%*c");
-					printf("\n");
-
-					if (num == 0)
-					{
-						sceneNum = num;
-						break;
-					}
-					else
-					{
-						printf("³‚µ‚¢‘€ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-					}
-				}
-			}
-		}
-		
-		//íœ
-		else if (sceneNum == 4)
-		{
-			printf("[ —v‘f‚Ìíœ ]\n");
-			printf("ÅŒã”ö‚Ì—v‘f‚ğíœ‚µ‚Ü‚µ‚½\n");
-
-			//ƒV[ƒ“Ø‚è‘Ö‚¦
-			while (true)
-			{
-				if (sceneNum == 0)
-				{
-					printf("íœ‚·‚é‚à‚Ì‚È‚¢‚©‚ç‰Šú‰æ–Ê–ß‚é‚æ\n");
-					break;
-				}
-				else
-				{
-					printf("---------------------\n");
-					printf("0.‰Šú‰æ–Ê‚É–ß‚é\n");
-					int num;
-					scanf_s("%d", &num);
-					scanf_s("%*[^\n]%*c");
-					printf("\n");
-
-					if (num == 0)
-					{
-						sceneNum = num;
-						break;
-					}
-					else
-					{
-						printf("³‚µ‚¢‘€ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-					}
-				}
-			}
-		}
+		printf("%s\n", *i);
 	}
 
 	return 0;
-}
-
-void Insert(CELL* currentCell, const char* buf)
-{
-	// V‹K‚ÉƒZƒ‹‚ğì¬
-	CELL* cell;
-	// V‹Kì¬‚·‚éƒZƒ‹•ª‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
-	cell = (CELL*)malloc(sizeof(CELL));
-
-	strcpy_s(cell->name, 8, buf);
-	cell->prev = currentCell;
-	cell->next = currentCell->next;
-
-	if (currentCell->next)
-	{
-		CELL* nextCell = currentCell->next;
-		nextCell->prev = cell;
-	}
-
-	// ’Ç‰Á‚·‚é‘O‚ÌÅŒã”ö‚ÉV‹KƒZƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ğ‘ã“ü
-	currentCell->next = cell;
-	cell->prev = currentCell;
-}
-
-void PushBack(CELL* currentCell, const char* buf)
-{
-	// V‹K‚ÉƒZƒ‹‚ğì¬
-	CELL* cell;
-	// V‹Kì¬‚·‚éƒZƒ‹•ª‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
-	cell = (CELL*)malloc(sizeof(CELL));
-
-	strcpy_s(cell->name, 8, buf);
-	cell->next = nullptr;
-	printf("%s‚ªÅŒã”ö‚É’Ç‰Á‚³‚ê‚Ü‚µ‚½\n", cell->name);
-
-	// ’Ç‰Á‚·‚é‘O‚ÌÅŒã”ö‚ğŒŸõ‚·‚é
-	// ÅV‚ÌƒZƒ‹‚ÌƒAƒhƒŒƒX‚Ìˆê‚Â–Ú‚Ìˆ—‚Íˆø”‚©‚ç‚Á‚Ä‚«‚½ƒŠƒXƒg‚Ì‚¤‚¿Å‰‚ÌƒZƒ‹‚ÌƒAƒhƒŒƒX‚ªŠY“–‚·‚é
-	while (currentCell->next != nullptr)
-	{
-		currentCell = currentCell->next;
-	}
-
-	// ’Ç‰Á‚·‚é‘O‚ÌÅŒã”ö‚ÉV‹KƒZƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ğ‘ã“ü‚·‚é
-	currentCell->next = cell;
-	cell->prev = currentCell;
-}
-
-int Index(CELL* endCell)
-{
-	int eleNum = 0;
-	// next‚É‰½‚©“ü‚Á‚Ä‚éŒÀ‚èo—Í‚·‚é
-	while (endCell->next != nullptr)
-	{
-		endCell = endCell->next;
-		printf("%d:%s\n", eleNum, endCell->name);
-
-		eleNum++;
-	}
-	return eleNum;
-}
-
-void Delete(CELL* endCell)
-{
-	// ÅŒã”öíœ‚·‚é
-	while (endCell->next->next != nullptr)
-	{
-		endCell = endCell->next;
-	}
-	endCell->next = nullptr;
-}
-
-void Edit(CELL* editCell)
-{
-	char name[8] = {};
-	scanf_s("%s", name, 8);
-	strcpy_s(editCell->next->name, 8, name);
-}
-
-CELL* GetInsertCellAddress(CELL* endCell, int iterator)
-{
-	for (int i = 0; i < iterator; i++)
-	{
-		if (endCell->next)
-		{
-			endCell = endCell->next;
-		}
-		else
-		{
-			break;
-		}
-	}
-	return endCell;
 }
