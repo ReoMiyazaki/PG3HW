@@ -6,57 +6,36 @@
 typedef void(*PFunc)();
 
 // コールバック関数
-void Around()
-{
-	printf("あなたの勝ちだ！");
-}
-void Missing()
-{
-	printf("残念だが、私の勝ちだ。");
-}
-
-void setTimeout(PFunc p, int second)
+void setTimeout(int anser, int result)
 {
 	// コールバック関数を呼び出す
-	Sleep(second * 1'000);
-	p();
+	Sleep(3 * 1'000);
+
+	if (anser == result)
+	{
+		printf("あなたの勝ち\n");
+	}
+	else
+	{
+		printf("あなたの負け\n");
+	}
 }
 
 int main()
 {
 	srand(time(nullptr));
-	PFunc p;
-	p = Around;
 	int anser = 0;
 	int dice = 0;
+	int result = 0;
 
-	printf("サイコロの出目は、半か丁か！\n");
+	printf("サイコロの出目は、半か丁か\n");
 	printf("半なら1, 丁なら0を入力してください → ");
 	scanf_s("%d", &anser);
 	dice = rand() % 6 + 1;
+	result = dice % 2;
+
 	// 3秒待つ
-	setTimeout(p, 3);
-
-	if (anser == 1)
-	{
-		if (dice % 2 == anser) { p = Around; }
-		else { p = Missing; }
-		printf("出た目は[%d]だったぜ。\n", dice);
-
-	}
-
-	else if (anser == 0)
-	{
-		if (dice % 2 == anser) { p = Around; }
-		else { p = Missing; }
-		printf("出た目は[%d]だったぜ。\n", dice);
-	}
-
-	else
-	{
-		printf("1か0を入力してください。\n");
-	}
-
-
+	setTimeout(anser, result);
+	printf("ダイスの出目は%d\n", dice);
 	return 0;
 }
