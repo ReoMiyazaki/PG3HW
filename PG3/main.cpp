@@ -3,15 +3,18 @@
 #include <time.h>
 #include "windows.h"
 
-typedef void(*PFunc)();
+typedef void(*PFunc)(int*);
 
-// コールバック関数
-void setTimeout(int anser, int result)
+void Judge(int* anser)
 {
-	// コールバック関数を呼び出す
-	Sleep(3 * 1'000);
+	int dice = 0;
+	int result = 0;
 
-	if (anser == result)
+	dice = rand() % 6 + 1;
+
+	result = dice % 2;
+
+	if (*anser == result)
 	{
 		printf("あなたの勝ち\n");
 	}
@@ -19,6 +22,17 @@ void setTimeout(int anser, int result)
 	{
 		printf("あなたの負け\n");
 	}
+	printf("ダイスの出目は%d\n", dice);
+}
+
+// コールバック関数
+void setTimeout(PFunc p, int anser)
+{
+	// コールバック関数を呼び出す
+	Sleep(3 * 1000);
+
+	p(&anser);
+
 }
 
 int main()
@@ -26,16 +40,15 @@ int main()
 	srand(time(nullptr));
 	int anser = 0;
 	int dice = 0;
-	int result = 0;
+
+	PFunc p;
+	p = Judge;
 
 	printf("サイコロの出目は、半か丁か\n");
 	printf("半なら1, 丁なら0を入力してください → ");
 	scanf_s("%d", &anser);
-	dice = rand() % 6 + 1;
-	result = dice % 2;
-
+	
 	// 3秒待つ
-	setTimeout(anser, result);
-	printf("ダイスの出目は%d\n", dice);
+	setTimeout(p, anser);
 	return 0;
 }
