@@ -4,48 +4,25 @@
 
 int main()
 {
-	Enemy* enemy1 = new Enemy();
-	Enemy* enemy2 = new Enemy();
-	Enemy* enemy3 = new Enemy();
+	int enemystate = 0;
 
-	enemy1->Initialize();
-	enemy2->Initialize();
-	enemy3->Initialize();
-
-	int isAlive = 1;
+	Enemy* enemy = new Enemy();
+	enemy->Initialize();
 
 	while (true)
 	{
-		system("cls");
-
-		printf("“G‚ð‚Ç‚¤‚·‚é‚©Œˆ‚ß‚Ä‚­‚¾‚³‚¢B\n");
-		printf("ƒLƒ‹ ¨ 0, –³Ž‹ ¨ 1 : “ü—Í");
-		scanf_s("%d", &isAlive);
-
-		switch (isAlive)
+		enemy->Update(enemystate);
+		Sleep(2 * 1'000);
+		if (enemystate < 2)
 		{
-		case 0:
-			Enemy::isAlive = false;
-			break;
-
-		case 1:
-			Enemy::isAlive = true;
-			break;
-
-		default:
-			printf("0 –”‚Í 1 ‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B\n");
-			break;
+			enemystate++;
 		}
-
-		enemy1->Update(isAlive);
-		enemy2->Update(isAlive);
-		enemy3->Update(isAlive);
-		Sleep(1 * 1'000);
+		else
+		{
+			enemystate = 0;
+			system("cls");
+		}
 	}
-
-	delete enemy1;
-	delete enemy2;
-	delete enemy3;
 
 	return 0;
 }
