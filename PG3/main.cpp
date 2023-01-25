@@ -28,41 +28,27 @@ int main()
 	PFunc p;
 	p = Around;
 	int anser = 0;
-	int dice = rand() % 6 + 1;
+	int dice = 0;
 
 	printf("サイコロの出目は、半か丁か！\n");
 	printf("半なら1, 丁なら0を入力してください → ");
 	scanf_s("%d", &anser);
+	dice = rand() % 6 + 1;
 	// 3秒待つ
 	setTimeout(p, 3);
 
-	if (anser == 1 || anser == 0)
+	if (anser == 1)
 	{
-		// 入力が奇数
-		if (anser == 1)
-		{
-			if (dice % 2 == 1)
-			{
-				p = Around;
-			}
-			else
-			{
-				p = Missing;
-			}
-		}
+		if (dice % 2 == anser) { p = Around; }
+		else { p = Missing; }
+		printf("出た目は[%d]だったぜ。\n", dice);
 
-		// 入力が偶数
-		else if (anser == 0)
-		{
-			if (dice % 2 == 0)
-			{
-				p = Around;
-			}
-			else
-			{
-				p = Missing;
-			}
-		}
+	}
+
+	else if (anser == 0)
+	{
+		if (dice % 2 == anser) { p = Around; }
+		else { p = Missing; }
 		printf("出た目は[%d]だったぜ。\n", dice);
 	}
 
@@ -70,6 +56,7 @@ int main()
 	{
 		printf("1か0を入力してください。\n");
 	}
+
 
 	return 0;
 }
