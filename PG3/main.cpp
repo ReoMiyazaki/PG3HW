@@ -39,7 +39,6 @@ int main()
 {
 	srand(time(nullptr));
 	int anser = 0;
-	int dice = 0;
 
 	PFunc p;
 	p = Judge;
