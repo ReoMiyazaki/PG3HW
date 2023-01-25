@@ -11,6 +11,7 @@ SceneManager* SceneManager::GetInstance()
 
 	return &instance;
 }
+
 void SceneManager::ChangeScene(int sceneNo)
 {
 	printf("SceneNo:%d\n", sceneNo);
