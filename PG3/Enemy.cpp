@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "Enemy.h"
 
-int Enemy::isAlive = 0;
+int Enemy::isAlive = true;
 
 void Enemy::Initialize() {}
 

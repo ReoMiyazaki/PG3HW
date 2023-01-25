@@ -12,7 +12,7 @@ int main()
 	enemy2->Initialize();
 	enemy3->Initialize();
 
-	int isKill = 0;
+	int isKill = false;
 
 	while (true)
 	{
