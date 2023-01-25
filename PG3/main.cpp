@@ -26,10 +26,10 @@ void Judge(int* anser)
 }
 
 // コールバック関数
-void setTimeout(PFunc p, int anser)
+void setTimeout(PFunc p, int anser, int second)
 {
 	// コールバック関数を呼び出す
-	Sleep(3 * 1000);
+	Sleep(second * 1000);
 
 	p(&anser);
 
@@ -46,8 +46,8 @@ int main()
 	printf("サイコロの出目は、半か丁か\n");
 	printf("半なら1, 丁なら0を入力してください → ");
 	scanf_s("%d", &anser);
-	
+
 	// 3秒待つ
-	setTimeout(p, anser);
+	setTimeout(p, anser, 3);
 	return 0;
 }
