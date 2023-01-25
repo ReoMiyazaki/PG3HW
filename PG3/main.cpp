@@ -12,24 +12,24 @@ int main()
 	enemy2->Initialize();
 	enemy3->Initialize();
 
-	int isAlive = 1;
+	int isKill = 0;
 
 	while (true)
 	{
 		system("cls");
 
 		printf("敵をどうするか決めてください。\n");
-		printf("キル → 0, 無視 → 1 : 入力");
-		scanf_s("%d", &isAlive);
+		printf("無視 →　0, キル → 1 : 入力 → ");
+		scanf_s("%d", &isKill);
 
-		switch (isAlive)
+		switch (isKill)
 		{
 		case 0:
-			Enemy::isAlive = false;
+			Enemy::isAlive = true;
 			break;
 
 		case 1:
-			Enemy::isAlive = true;
+			Enemy::isAlive = false;
 			break;
 
 		default:
@@ -37,9 +37,9 @@ int main()
 			break;
 		}
 
-		enemy1->Update(isAlive);
-		enemy2->Update(isAlive);
-		enemy3->Update(isAlive);
+		enemy1->Update(isKill);
+		enemy2->Update(isKill);
+		enemy3->Update(isKill);
 		Sleep(1 * 1'000);
 	}
 

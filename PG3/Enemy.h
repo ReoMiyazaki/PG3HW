@@ -7,7 +7,7 @@ public:
 	~Enemy() {};
 
 	void Initialize();
-	void Update(int isAlive);
+	void Update(int isKill);
 	void Draw();
 };
 
